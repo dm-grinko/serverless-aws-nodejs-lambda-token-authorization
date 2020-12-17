@@ -1,0 +1,29 @@
+service: lambda-token-authorization
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  profile: ${file(./env.yml):PROFILE}
+  region: ${file(./env.yml):REGION}
+  apiKeys: 
+    - ${self:service}-key
+  environment:
+    SECRET_KEY: ${file(./env.yml):SECRET_KEY}
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: hello
+          method: get
+          authorizer: authorize
+  generateToken:
+    handler: authorization.register
+    events:
+      - http:
+          path: register
+          method: post
+          private: true
+  authorize:
+    handler: authorization.authorize

@@ -1,0 +1,15 @@
+{
+  "name": "lambda-token-authorization",
+  "version": "1.0.0",
+  "description": "lambda token authorization",
+  "main": "authorization.js",
+  "scripts": {
+    "deploy": "sls deploy"
+  },
+  "keywords": [],
+  "author": "Dmitry Grinko",
+  "license": "MIT",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1"
+  }
+}
